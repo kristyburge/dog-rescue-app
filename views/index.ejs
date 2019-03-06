@@ -1,0 +1,14 @@
+<h1>View all dogs</h1>
+
+<!--TODO: Show total results found-->
+
+<% dogs.forEach( dog => { %> 
+    <div class="card">
+        <p><%= dog.name %></p> 
+        <p><%= dog.age %></p>
+        <p><%= dog.breed %></p>
+        <p><%= dog.location %></p>
+        <!--TODO: Consider useing Momentjs library for more control over date formatting-->
+        <p><%= dog.dateAdded.toDateString() %></p> 
+    </div>
+<% }); %>

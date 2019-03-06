@@ -1,0 +1,17 @@
+{
+  "name": "dog-rescue-app",
+  "version": "1.0.0",
+  "description": "A dog rescue app with RESTful routing",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kristy Burge",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.17"
+  }
+}
