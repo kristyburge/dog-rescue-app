@@ -12,4 +12,11 @@
     <p>Write a short description about this dog's personality. Is he/she housetrained? Good with other dogs? Good with kids? etc...</p>
 </div>
 
+<a href="/dogs/<%= dog._id %>/edit">Edit dog</a>
+
+<form action="/dogs/<%= dog._id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+</form>
+
+
 <% include partials/footer %>

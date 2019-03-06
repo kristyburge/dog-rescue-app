@@ -46,7 +46,7 @@ const Dog = mongoose.model('Dog', dogSchema);
 
 // ROUTES
 app.get('/', (req, res) => {
-    res.send('Welcome to the dog rescue app!');
+    res.render('home');
 }); 
 
 // 1: Index route - show all available dogs
@@ -129,7 +129,18 @@ app.put('/dogs/:id', (req, res) => {
     });  
 }); 
 
-// 7 - DELETE route 
+// 7 - DESTROY route 
+app.delete('/dogs/:id', (req, res) => {
+    Dog.findByIdAndRemove(req.params.id, (err, doc) => {
+        if (err) {
+            console.log(err); 
+        } else {
+            console.log(doc); 
+            res.redirect('/'); 
+        }
+    }); 
+    
+}); 
 
 app.listen(process.env.PORT, process.env.IP, () => {
     console.log('The puppies are waking up...');     
