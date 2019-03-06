@@ -6,8 +6,9 @@
 
 <% dogs.forEach( dog => { %> 
     <div class="card">
+        <img src="<%= dog.image %>" alt="<%= dog.name %>">
         <p><span class="dname"><%= dog.name %></span>, a <%= dog.breed %>, age <%= dog.age %></p> 
-        <p>Location: <%= dog.location %></p>
+        <a href="/dogs/<%= dog._id %>">Learn more about <%= dog.name %></a>
         <hr>
     </div>
 <% }); %>

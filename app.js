@@ -15,6 +15,7 @@ const dogSchema = new mongoose.Schema({
     age: Number,
     breed: String,
     location: String,
+    image: {type: String, default: 'https://loremflickr.com/320/240/dog'}, 
     adopted: {type: Boolean, default: false}, 
     dateAdded: {type: Date, default: Date.now}
 });
@@ -25,6 +26,7 @@ const Dog = mongoose.model('Dog', dogSchema);
 // // ================================
 // Dog.create({
 //     name: 'Chester',
+//     image: 'https://picsum.photos/200/200/?random',
 //     age: 7,
 //     breed: 'beagle',
 //     location: 'forever home',
@@ -57,6 +59,33 @@ app.get('/dogs', (req, res) => {
         }
     }); 
     
+}); 
+
+// 2: NEW - show a form that lets a user create a new dog
+app.get('/dogs/new', (req, res) => {
+    res.render('new');
+}); 
+
+// 3: CREATE - add a dog to the database, then redirect to the index page
+app.post('/dogs', (req, res) => {
+    // console.log(req.body.dog); // all in the dog object
+    // Create the dog
+    Dog.create(req.body.dog, (err, dog) => {
+        if(err){
+            console.log('ERROR!');
+            console.log(err);
+        } else {
+            console.log('Saved new dog'); 
+            console.log(dog); 
+            res.redirect('/dogs');
+        }
+    }); 
+    
+}); 
+
+// 4: SHOW - show more information about a particular dog
+app.get('/dogs/:id', (req, res) => {
+    res.send('you found the SHOW page');
 }); 
 
 
