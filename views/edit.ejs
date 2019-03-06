@@ -1,0 +1,16 @@
+<% include partials/header %> 
+
+<h1>Edit <%= dog.name %></h1>
+<form action="/dogs/<%= dog._id %>?_method=PUT" method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="dog[name]" id="name" value="<%= dog.name %>" required>
+    <label for="age">Age</label>
+    <input type="text" name="dog[age]" id="age" value="<%= dog.age %>" required>
+    <label for="breed">Breed</label>
+    <input type="text" name="dog[breed]" id="breed" value="<%= dog.breed %>" required>
+    <label for="image">Image</label>
+    <input type="text" name="dog[image]" id="image" value="<%= dog.image %>" required>
+    <button type="submit">Update</button>
+</form>
+
+<% include partials/footer %>

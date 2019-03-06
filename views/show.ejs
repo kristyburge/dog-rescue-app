@@ -1,0 +1,15 @@
+<% include partials/header %>
+
+<h1>This is the SHOW page</h1>
+<p>Where you can view more details about a particular dog...</p>
+
+<h2><%= dog.name %></h2>
+<img src="<%= dog.image %>" alt="<%= dog.name%>">
+<p><strong>Breed:</strong> <%= dog.breed %></p>
+
+<div>
+    <h3>About <%= dog.name %></h3>
+    <p>Write a short description about this dog's personality. Is he/she housetrained? Good with other dogs? Good with kids? etc...</p>
+</div>
+
+<% include partials/footer %>
