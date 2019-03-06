@@ -15,6 +15,7 @@ const dogSchema = new mongoose.Schema({
     age: Number,
     breed: String,
     location: String,
+    adopted: {type: Boolean, default: false}, 
     dateAdded: {type: Date, default: Date.now}
 });
 
@@ -24,9 +25,10 @@ const Dog = mongoose.model('Dog', dogSchema);
 // // ================================
 // Dog.create({
 //     name: 'Chester',
-//     age: 2,
+//     age: 7,
 //     breed: 'beagle',
-//     location: 'foster',
+//     location: 'forever home',
+//     adopted: true
 // }, (err, item) => {
 //     if(err){
 //         console.log('ERROR!');
