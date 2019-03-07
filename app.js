@@ -15,7 +15,8 @@ app.use(methodOverride('_method'));
 // MONGOOSE / MODEL CONFIG
 const dogSchema = new mongoose.Schema({
     name: String,
-    age: Number,
+    ageYr: Number,
+    ageMo: Number,
     breed: String,
     location: String,
     image: {type: String, default: 'https://loremflickr.com/320/240/dog'}, 

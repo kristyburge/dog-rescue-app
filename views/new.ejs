@@ -4,8 +4,10 @@
 <form action="/dogs" method="POST">
     <label for="name">Name</label>
     <input type="text" name="dog[name]" id="name" placeholder="Rover" required>
-    <label for="age">Age</label>
-    <input type="text" name="dog[age]" id="age" placeholder="3" required>
+    <label for="ageYrs">Age in Years</label>
+    <input type="text" name="dog[ageYr]" id="ageYrs" placeholder="3" required>
+    <label for="ageMos">Age in Months</label>
+    <input type="text" name="dog[ageMo]" id="ageMos" placeholder="1" required>
     <label for="breed">Breed</label>
     <input type="text" name="dog[breed]" id="breed" placeholder="beagle" required>
     <button type="submit">Submit</button>

@@ -4,8 +4,10 @@
 <form action="/dogs/<%= dog._id %>?_method=PUT" method="POST">
     <label for="name">Name</label>
     <input type="text" name="dog[name]" id="name" value="<%= dog.name %>" required>
-    <label for="age">Age</label>
-    <input type="text" name="dog[age]" id="age" value="<%= dog.age %>" required>
+    <label for="ageYrs">Age</label>
+    <input type="text" name="dog[ageYr]" id="ageYrs" value="<%= dog.ageYr %>" required>
+    <label for="ageMos">Age in Months</label>
+    <input type="text" name="dog[ageMo]" id="ageMos" value="<%= dog.ageMo %>" required>
     <label for="breed">Breed</label>
     <input type="text" name="dog[breed]" id="breed" value="<%= dog.breed %>" required>
     <label for="image">Image</label>
