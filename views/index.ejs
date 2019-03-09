@@ -9,8 +9,9 @@
     </div>
 <!--TODO: Show total results found-->
     <div class="row">
-        <div class="col-md-4">
+        
         <% dogs.forEach( dog => { %> 
+        <div class="col-md-4">
             <div class="card">
                 <img class="card-img-top" src="<%= dog.image %>" alt="<%= dog.name %>">
                 <div class="card-body">
@@ -19,11 +20,11 @@
                     <p class="card-text">anything else brief...</p>
                     <a href="/dogs/<%= dog._id %>">Learn more about <%= dog.name %></a>
                 </div>
-            </div>
+            </div><!-- end .card -->
+        </div><!-- end .col -->
         <% }); %>
-        </div>
-    </div>
 
-</div>
+    </div><!-- end .row --> 
+</div><!-- end .container -->
 
 <% include partials/footer %> 
