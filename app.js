@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser'); 
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 
 const Dog = require('./models/dog');
 const User = require('./models/user');
@@ -13,6 +15,24 @@ app.set('view engine', 'ejs');
 app.use(express.static('public')); 
 app.use(bodyParser.urlencoded({extended: true})); 
 app.use(methodOverride('_method'));
+
+// Express-Session
+app.use( require('express-session')({
+    secret: ['run like the wind', 'take long walks', 'play like no one is watching', 'love everyone you meet'],
+    resave: false,
+    saveUninitialized: false
+}));
+
+// Passport CONFIG
+app.use(passport.initialize());
+app.use(passport.session()); 
+
+// use static authenticate method of model in LocalStrategy (from passport-local-mongoose)
+passport.use(new LocalStrategy(User.authenticate()));
+
+// use static serialize and deserialize of model for passport session support (from passport-local-mongoose)
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 // // Test Saving New Dog to Database: 
