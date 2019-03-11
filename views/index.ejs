@@ -1,10 +1,13 @@
 <% include partials/header %> 
 
 <div class="container">
-    <div class="row">   
-        <div class="col">
-            <h1>View all dogs looking for a furever home</h1>
-            <a href="/dogs/new">Add a new dog</a>
+    <div class="row text-center title">   
+        <div class="col-sm-8 offset-sm-2">
+            <h1 class="display-4">Are you my furever home?
+                <br>
+                <small class="text-muted">meet your new furry family member!</small>
+            </h1>
+            <a class="btn btn-outline-success btn-lg btn-block" href="/dogs/new">Add a new dog</a>
         </div> 
     </div>
 <!--TODO: Show total results found-->
@@ -17,7 +20,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= dog.name %></h5>
                     <h6 class="card-subtitle mb-2 text-muted">a <%= dog.breed %> &vert; age <%= dog.ageYr %> yrs <%= dog.ageMo %> mos</h6>
-                    <p class="card-text">anything else brief...</p>
+                    <p class="card-text"><%= dog.description.slice(0,100); %></p>
                     <a href="/dogs/<%= dog._id %>">Learn more about <%= dog.name %></a>
                 </div>
             </div><!-- end .card -->

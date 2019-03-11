@@ -1,16 +1,38 @@
-<% include partials/header %> 
-
-<h1>Add a new dog</h1>
-<form action="/dogs" method="POST">
-    <label for="name">Name</label>
-    <input type="text" name="dog[name]" id="name" placeholder="Rover" required>
-    <label for="ageYrs">Age in Years</label>
-    <input type="text" name="dog[ageYr]" id="ageYrs" placeholder="3" required>
-    <label for="ageMos">Age in Months</label>
-    <input type="text" name="dog[ageMo]" id="ageMos" placeholder="1" required>
-    <label for="breed">Breed</label>
-    <input type="text" name="dog[breed]" id="breed" placeholder="beagle" required>
-    <button type="submit">Submit</button>
-</form>
-
-<% include partials/footer %>
+<% include ./partials/header %> 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="display-2">Add a new dog</h1>
+                <form class="form--new" action="/dogs" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="dog[name]" id="name" placeholder="Rover" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ageYrs">Age in Years</label>
+                        <input class="form-control" type="text" name="dog[ageYr]" id="ageYrs" placeholder="3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ageMos">Age in Months</label>
+                        <input class="form-control" type="text" name="dog[ageMo]" id="ageMos" placeholder="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="breed">Breed</label>
+                        <input class="form-control" type="text" name="dog[breed]" id="breed" placeholder="beagle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Story</label>
+                        <textarea class="form-control" id="description" name="dog[description]" placeholder="please add a story about this dog's background, history, and personality"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input class="form-control" type="text" id="image" name="dog[image]" placeholder="image url">
+                    </div>
+                    <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Submit</button>
+                </form>
+                <a href="/dogs" class="btn btn-outline-danger btn-lg btn-block">Cancel</a>
+            </div><!-- .col --> 
+        </div><!-- .row -->
+    </div><!-- .container -->        
+            
+<% include ./partials/footer %>
