@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
+const Dog = require('./models/dog');
+const User = require('./models/user');
+
 // APP CONFIG
 mongoose.connect('mongodb://localhost:27017/dogs', {useNewUrlParser: true});
 app.set('view engine', 'ejs');
@@ -11,20 +14,6 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true})); 
 app.use(methodOverride('_method'));
 
-
-// MONGOOSE / MODEL CONFIG
-const dogSchema = new mongoose.Schema({
-    name: String,
-    ageYr: Number,
-    ageMo: Number,
-    breed: String,
-    location: String,
-    image: {type: String, default: 'https://loremflickr.com/320/240/dog'}, 
-    adopted: {type: Boolean, default: false}, 
-    dateAdded: {type: Date, default: Date.now}
-});
-
-const Dog = mongoose.model('Dog', dogSchema); 
 
 // // Test Saving New Dog to Database: 
 // // ================================
