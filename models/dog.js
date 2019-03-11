@@ -7,7 +7,8 @@ const dogSchema = new mongoose.Schema({
     ageMo: Number,
     breed: String,
     location: String,
-    image: {type: String, default: 'https://loremflickr.com/320/240/dog'}, 
+    image: String,
+    description: String,
     adopted: {type: Boolean, default: false}, 
     dateAdded: {type: Date, default: Date.now}
 });
