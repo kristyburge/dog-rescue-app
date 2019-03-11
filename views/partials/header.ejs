@@ -21,16 +21,22 @@
             <li class="nav-item active">
               <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
+            <% if (!currentUser) { %>
             <li class="nav-item">
               <a class="nav-link" href="/register">Sign up</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
             </li>
+            <% } else { %>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
+            <% } %>
           </ul>
         </div>
       </nav>
+      <% if(currentUser) { %>
+        <h4>Currently logged in as <%= currentUser.username %></h4>
+      <% } %> 
   

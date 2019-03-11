@@ -54,6 +54,12 @@ passport.deserializeUser(User.deserializeUser());
 //     }
 // }); 
 
+// Create custom middleware to be called on every route that passes on the user object info (if logged in)
+app.use( function (req, res, next) {
+    res.locals.currentUser = req.user; 
+    next();
+}); 
+
 // ROUTES
 app.get('/', (req, res) => {
     res.render('home');
@@ -151,6 +157,78 @@ app.delete('/dogs/:id', (req, res) => {
     }); 
     
 }); 
+
+
+// Auth routes
+// REGISTER / SIGN-UP
+    // GET
+    app.get('/register', (req, res) => {
+        res.render('register');
+    }); 
+    
+    // POST
+    app.post('/register', (req, res) => {
+        // use the .register() method from passport-local-mongoose
+        // https://github.com/saintedlama/passport-local-mongoose#static-methods
+        User.register(new User({username: req.body.username}), req.body.password, (err, data) => {
+            if(err) {
+                console.log(err);
+                // send user back to the register page
+                // TODO: show errors
+                // return to get out of the callback
+                return res.render('/register'); 
+            } 
+            
+            // if no error, then authenticate & redirect user somewhere
+            passport.authenticate('local')(req, res, () => {
+            /* The .authenticate() method will: 
+                (1) log user in, 
+                (2) store session info, 
+                (3) run serialize user method, and 
+                (4) local strategy auth */
+                res.redirect('/dogs/new');
+            });
+            
+        });
+
+    }); 
+
+// LOGIN
+    // GET
+    app.get('/login', (req, res) => {
+        res.render('login');
+    }); 
+    
+    // POST
+    // pass in the authenticate method as middleware
+    // shouldn't be anything needed in the callback
+    app.post('/login', passport.authenticate('local', {
+        successRedirect: '/profile',
+        failureRedirect: '/register'
+    }), (req, res) => {
+        
+    }); 
+
+// LOGOUT
+    // GET
+    app.get('/logout', (req, res) => {
+        // use passport method to destroy the user session
+        req.logout(); 
+        res.redirect('/'); // redirect back to the home page
+    }); 
+
+// middleware
+function isLoggedIn(req, res, next) {
+    // check the Passport.js isAuthenticated() method 
+    // req.isAuthenticated() returns true if user logged in
+    if ( req.isAuthenticated() ) { 
+        return next(); 
+    }
+    
+    // send user to the logged in page.
+    res.redirect('/login'); 
+}
+
 
 app.listen(process.env.PORT, process.env.IP, () => {
     console.log('The puppies are waking up...');     
