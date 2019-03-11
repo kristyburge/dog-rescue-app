@@ -81,12 +81,12 @@ app.get('/dogs', (req, res) => {
 }); 
 
 // 2: NEW - show a form that lets a user create a new dog
-app.get('/dogs/new', (req, res) => {
+app.get('/dogs/new', isLoggedIn, (req, res) => {
     res.render('new');
 }); 
 
 // 3: CREATE - add a dog to the database, then redirect to the index page
-app.post('/dogs', (req, res) => {
+app.post('/dogs', isLoggedIn, (req, res) => {
     // console.log(req.body.dog); // all in the dog object
     // Create the dog
     Dog.create(req.body.dog, (err, dog) => {
@@ -119,7 +119,7 @@ app.get('/dogs/:id', (req, res) => {
 
 
 // 5: EDIT - show the edit form for a particular dog
-app.get('/dogs/:id/edit', (req, res) => {
+app.get('/dogs/:id/edit', isLoggedIn, (req, res) => {
     Dog.findById(req.params.id, (err, dogInfo) => {
         if (err) {
             console.log('Whoops! Check out this error first:');
@@ -132,7 +132,7 @@ app.get('/dogs/:id/edit', (req, res) => {
 }); 
 
 // 6: UPDATE - Lookup & update a particular dog, then redirect 
-app.put('/dogs/:id', (req, res) => {
+app.put('/dogs/:id', isLoggedIn, (req, res) => {
     Dog.findByIdAndUpdate(req.params.id, req.body.dog, (err, dogInfo) => {
         if (err) {
             console.warn('ERROR!!');
@@ -146,7 +146,7 @@ app.put('/dogs/:id', (req, res) => {
 }); 
 
 // 7 - DESTROY route 
-app.delete('/dogs/:id', (req, res) => {
+app.delete('/dogs/:id', isLoggedIn, (req, res) => {
     Dog.findByIdAndRemove(req.params.id, (err, doc) => {
         if (err) {
             console.log(err); 
@@ -203,7 +203,7 @@ app.delete('/dogs/:id', (req, res) => {
     // pass in the authenticate method as middleware
     // shouldn't be anything needed in the callback
     app.post('/login', passport.authenticate('local', {
-        successRedirect: '/profile',
+        successRedirect: '/dogs',
         failureRedirect: '/register'
     }), (req, res) => {
         
